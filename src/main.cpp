@@ -10,6 +10,7 @@
 #include "Types.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 int main()
 {
@@ -25,6 +26,11 @@ int main()
     u8 img_flags = IMG_INIT_PNG;
     if (!(IMG_Init(img_flags) & img_flags)) {
         SDL_Log("Unable to init sdl_image :^(");
+        return 1;
+    }
+
+    if (TTF_Init() < 0) {
+        SDL_Log("Unable to init sdl_ttf :^(");
         return 1;
     }
 
@@ -45,6 +51,7 @@ int main()
 
     Graphics::Renderer::free();
 
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 

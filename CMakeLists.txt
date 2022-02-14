@@ -2,18 +2,22 @@ cmake_minimum_required(VERSION 3.16)
 
 project(yak CXX)
 include_directories(${PROJECT_SOURCE_DIR}/src)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+find_package(SDL2_ttf REQUIRED)
 
-add_executable(yak
+set(SOURCE_FILES
         src/main.cpp
+        src/Entity.cpp
         src/Game.cpp
         src/MenuScene.cpp
         src/Scene.cpp
         src/Graphics/Renderer.cpp
-        src/Graphics/Texture.cpp
-        )
-target_link_libraries(yak ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+        src/Graphics/Texture.cpp)
+
+add_executable(yak ${SOURCE_FILES})
+target_link_libraries(yak SDL2::Main SDL2::Image SDL2::TTF)
