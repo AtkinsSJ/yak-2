@@ -5,6 +5,7 @@
  */
 
 #include "Game.h"
+#include "Graphics/Renderer.h"
 #include "MenuScene.h"
 #include "Types.h"
 #include <SDL.h>
@@ -36,17 +37,14 @@ int main()
         return 1;
     }
 
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
-    if (!renderer) {
-        SDL_Log("Unable to create renderer: %s", SDL_GetError());
-        return 1;
-    }
+    Graphics::Renderer::init(window);
 
-    Game game { window, renderer };
-    game.set_scene(new MenuScene(*renderer));
+    Game game;
+    game.set_scene(new MenuScene);
     game.run();
 
-    SDL_DestroyWindow(window);
+    Graphics::Renderer::free();
+
     IMG_Quit();
     SDL_Quit();
 

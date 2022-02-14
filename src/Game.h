@@ -7,11 +7,10 @@
 #pragma once
 
 #include "Scene.h"
-#include <SDL.h>
 
 class Game {
 public:
-    Game(SDL_Window*, SDL_Renderer*);
+    Game() = default;
     ~Game() = default;
 
     void run();
@@ -19,7 +18,5 @@ public:
     void set_scene(Scene* scene);
 
 private:
-    SDL_Window& m_window;
-    SDL_Renderer& m_renderer;
-    Scene* m_scene;
+    Scene* m_scene { nullptr };
 };

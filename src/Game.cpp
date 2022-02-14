@@ -5,17 +5,13 @@
  */
 
 #include "Game.h"
+#include <Graphics/Renderer.h>
 #include <SDL.h>
-
-Game::Game(SDL_Window* window, SDL_Renderer* renderer)
-    : m_window(*window)
-    , m_renderer(*renderer)
-    , m_scene(nullptr)
-{
-}
 
 void Game::run()
 {
+    auto& renderer = Graphics::Renderer::the();
+
     bool running = true;
     while (running) {
         // Update
@@ -32,13 +28,12 @@ void Game::run()
             m_scene->update();
 
         // Render
-        SDL_SetRenderDrawColor(&m_renderer, 0, 0, 0, 255);
-        SDL_RenderClear(&m_renderer);
+        renderer.clear();
 
         if (m_scene)
             m_scene->render();
 
-        SDL_RenderPresent(&m_renderer);
+        renderer.display_frame();
     }
 }
 

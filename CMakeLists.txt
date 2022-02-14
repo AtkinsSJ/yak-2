@@ -13,5 +13,7 @@ add_executable(yak
         src/Game.cpp
         src/MenuScene.cpp
         src/Scene.cpp
+        src/Graphics/Renderer.cpp
+        src/Graphics/Texture.cpp
         )
 target_link_libraries(yak ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
