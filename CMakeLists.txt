@@ -8,5 +8,10 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
-add_executable(yak src/main.cpp)
+add_executable(yak
+        src/main.cpp
+        src/Game.cpp
+        src/MenuScene.cpp
+        src/Scene.cpp
+        )
 target_link_libraries(yak ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
