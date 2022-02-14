@@ -19,18 +19,18 @@ int main()
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        SDL_Log("Unable to init sdl :^(");
+        SDL_Log("Unable to init sdl: %s", SDL_GetError());
         return 1;
     }
 
     u8 img_flags = IMG_INIT_PNG;
     if (!(IMG_Init(img_flags) & img_flags)) {
-        SDL_Log("Unable to init sdl_image :^(");
+        SDL_Log("Unable to init sdl_image: %s", IMG_GetError());
         return 1;
     }
 
     if (TTF_Init() < 0) {
-        SDL_Log("Unable to init sdl_ttf :^(");
+        SDL_Log("Unable to init sdl_ttf: %s", TTF_GetError());
         return 1;
     }
 
