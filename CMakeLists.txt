@@ -17,7 +17,9 @@ set(SOURCE_FILES
         src/MenuScene.cpp
         src/Scene.cpp
         src/Graphics/Renderer.cpp
-        src/Graphics/Texture.cpp)
+        src/Graphics/Text.cpp
+        src/Graphics/Texture.cpp
+        )
 
 add_executable(yak ${SOURCE_FILES})
 target_link_libraries(yak SDL2::Main SDL2::Image SDL2::TTF)

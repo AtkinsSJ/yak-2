@@ -8,6 +8,7 @@
 #pragma once
 
 #include "Scene.h"
+#include <Graphics/Text.h>
 #include <Graphics/Texture.h>
 #include <SDL.h>
 
@@ -21,4 +22,8 @@ public:
 
 private:
     Graphics::Texture* m_title_background;
+
+    Graphics::Text* m_start_text { nullptr };
+    Graphics::Text* m_high_scores_text { nullptr };
+    Graphics::Text* m_version_text { nullptr };
 };

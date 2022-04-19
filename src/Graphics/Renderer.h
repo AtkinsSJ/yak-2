@@ -8,6 +8,7 @@
 
 #include "Texture.h"
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 namespace Graphics {
 
@@ -28,6 +29,8 @@ public:
     Texture* load_texture(char const* path);
     void draw_texture(Texture const& texture, SDL_Rect bounds);
 
+    bool load_font(char const* path);
+
 private:
     Renderer(SDL_Window&, SDL_Renderer&);
     ~Renderer();
@@ -35,5 +38,7 @@ private:
     SDL_Window& m_window;
     SDL_Renderer& m_renderer;
     SDL_Rect m_window_bounds {};
+
+    TTF_Font* m_font { nullptr };
 };
 }

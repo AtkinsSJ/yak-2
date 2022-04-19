@@ -20,6 +20,9 @@ Renderer::Renderer(SDL_Window& window, SDL_Renderer& renderer)
 
 Renderer::~Renderer()
 {
+    if (m_font)
+        TTF_CloseFont(m_font);
+
     SDL_DestroyRenderer(&m_renderer);
     SDL_DestroyWindow(&m_window);
 }
@@ -80,6 +83,23 @@ Texture* Renderer::load_texture(char const* path)
 void Renderer::draw_texture(Texture const& texture, SDL_Rect bounds)
 {
     SDL_RenderCopy(&m_renderer, &texture.m_texture, nullptr, &bounds);
+}
+
+bool Renderer::load_font(const char* path)
+{
+    if (m_font) {
+        TTF_CloseFont(m_font);
+        m_font = nullptr;
+    }
+
+    auto* maybe_font = TTF_OpenFont(path, 16);
+    if (!maybe_font) {
+        SDL_LogError(SDL_LOG_CATEGORY_SYSTEM, "Failed to load font file `%s`: %s", path, TTF_GetError());
+        return false;
+    }
+
+    m_font = maybe_font;
+    return true;
 }
 
 }

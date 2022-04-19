@@ -44,6 +44,8 @@ int main()
     }
 
     Graphics::Renderer::init(window);
+    if (!Graphics::Renderer::the().load_font("assets/04B_03__.TTF"))
+        return 1;
 
     Game game;
     game.set_scene(new MenuScene);
