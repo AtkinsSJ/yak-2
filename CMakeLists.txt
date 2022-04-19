@@ -62,7 +62,8 @@ set(SOURCE_FILES
         src/Graphics/Renderer.cpp
         src/Graphics/Text.cpp
         src/Graphics/Texture.cpp
+        src/YakPunk/Game.cpp
         )
 
 add_executable(yak ${SOURCE_FILES})
-target_link_libraries(yak SDL2::Main SDL2::Image SDL2::TTF Lagom::Core)
+target_link_libraries(yak SDL2::Main SDL2::Image SDL2::TTF Lagom::Core Lagom::Main)
