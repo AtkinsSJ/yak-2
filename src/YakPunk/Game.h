@@ -10,6 +10,7 @@
 #include <AK/OwnPtr.h>
 #include <AK/String.h>
 #include <AK/Types.h>
+#include <LibGfx/Size.h>
 #include <YakPunk/Scene.h>
 
 struct SDL_Renderer;
@@ -33,6 +34,7 @@ public:
     void run();
 
     SDL_Renderer& sdl_renderer() { return m_renderer; }
+    Gfx::IntSize window_size() const;
 
 private:
     Game(SDL_Window&, SDL_Renderer&);

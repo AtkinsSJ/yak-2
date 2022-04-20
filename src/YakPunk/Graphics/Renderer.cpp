@@ -15,7 +15,6 @@ Renderer::Renderer(SDL_Window& window, SDL_Renderer& renderer)
     : m_window(window)
     , m_renderer(renderer)
 {
-    SDL_GetWindowSize(&m_window, &m_window_bounds.w, &m_window_bounds.h);
 }
 
 Renderer::~Renderer()

@@ -117,4 +117,12 @@ void Game::run()
     }
 }
 
+Gfx::IntSize Game::window_size() const
+{
+    int width;
+    int height;
+    SDL_GetWindowSize(&m_window, &width, &height);
+    return { width, height };
+}
+
 }
