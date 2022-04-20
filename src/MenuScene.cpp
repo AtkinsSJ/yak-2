@@ -4,14 +4,12 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#include <AK/Format.h>
-#include <MenuScene.h>
+#include "MenuScene.h"
 #include <YakPunk/Game.h>
-#include <YakPunk/Graphics/Renderer.h>
 
 ErrorOr<NonnullOwnPtr<MenuScene>> MenuScene::create()
 {
-    auto title_background = TRY(YakPunk::Graphics::Texture::load("assets/title.png"));
+    auto title_background = TRY(YakPunk::Assets::the().load_texture("assets/title.png"));
     return adopt_nonnull_own_or_enomem(new MenuScene(move(title_background)));
 }
 

@@ -7,7 +7,12 @@
 #pragma once
 
 #include <AK/Error.h>
+#include <AK/HashMap.h>
 #include <AK/OwnPtr.h>
+#include <AK/RefPtr.h>
+#include <AK/String.h>
+#include <YakPunk/Forward.h>
+#include <YakPunk/Graphics/Texture.h>
 
 namespace YakPunk {
 
@@ -17,8 +22,13 @@ public:
     static Assets& the();
     ~Assets();
 
+    // FIXME: I'd rather return ErrorOr<Texture&>, but ErrorOr can't hold a reference.
+    ErrorOr<NonnullRefPtr<Graphics::Texture>> load_texture(String const& path);
+
 private:
     Assets();
+
+    HashMap<String, NonnullRefPtr<Graphics::Texture>> m_textures;
 };
 
 }

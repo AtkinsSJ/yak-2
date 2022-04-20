@@ -6,22 +6,23 @@
 
 #pragma once
 
+#include <AK/Badge.h>
 #include <AK/RefCounted.h>
 #include <AK/String.h>
 #include <LibGfx/Rect.h>
 #include <SDL.h>
+#include <YakPunk/Forward.h>
 
 namespace YakPunk::Graphics {
 
 class Texture final : public RefCounted<Texture> {
 public:
-    static ErrorOr<NonnullRefPtr<Texture>> load(String const& path);
+    Texture(Badge<Assets>, SDL_Texture&);
     ~Texture();
 
     void draw_at(Gfx::IntRect bounds) const;
 
 private:
-    explicit Texture(SDL_Texture&);
     SDL_Texture& m_texture;
 };
 
