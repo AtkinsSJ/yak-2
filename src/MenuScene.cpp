@@ -6,6 +6,7 @@
 
 #include <AK/Format.h>
 #include <MenuScene.h>
+#include <YakPunk/Game.h>
 #include <YakPunk/Graphics/Renderer.h>
 
 ErrorOr<NonnullOwnPtr<MenuScene>> MenuScene::create()
@@ -22,10 +23,10 @@ MenuScene::MenuScene(NonnullRefPtr<YakPunk::Graphics::Texture> title_background)
 
 void MenuScene::update()
 {
-    dbgln("Running menu scene update!");
 }
 
 void MenuScene::render()
 {
-    m_title_background->draw_at({ 0, 0, 100, 100 });
+    auto window_size = YakPunk::Game::the().window_size();
+    m_title_background->draw_at({ 0, 0, window_size.width(), window_size.height() });
 }

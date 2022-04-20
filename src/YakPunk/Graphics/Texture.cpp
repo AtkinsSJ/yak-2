@@ -39,10 +39,11 @@ Texture::~Texture()
     SDL_DestroyTexture(&m_texture);
 }
 
-void Texture::draw_at(SDL_Rect bounds) const
+void Texture::draw_at(Gfx::IntRect bounds) const
 {
     auto& renderer = Game::the().sdl_renderer();
-    SDL_RenderCopy(&renderer, &m_texture, nullptr, &bounds);
+    SDL_Rect rect { bounds.x(), bounds.y(), bounds.width(), bounds.height() };
+    SDL_RenderCopy(&renderer, &m_texture, nullptr, &rect);
 }
 
 }

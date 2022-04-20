@@ -8,6 +8,7 @@
 
 #include <AK/RefCounted.h>
 #include <AK/String.h>
+#include <LibGfx/Rect.h>
 #include <SDL.h>
 
 namespace YakPunk::Graphics {
@@ -17,7 +18,7 @@ public:
     static ErrorOr<NonnullRefPtr<Texture>> load(String const& path);
     ~Texture();
 
-    void draw_at(SDL_Rect bounds) const;
+    void draw_at(Gfx::IntRect bounds) const;
 
 private:
     explicit Texture(SDL_Texture&);
