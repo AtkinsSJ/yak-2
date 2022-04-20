@@ -6,14 +6,13 @@
 
 #pragma once
 
-#include "Texture.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <YakPunk/Graphics/Texture.h>
 
-namespace Graphics {
+namespace YakPunk::Graphics {
 
-class Renderer;
-extern Renderer* s_renderer;
+extern class Renderer* s_renderer;
 
 class Renderer {
 public:

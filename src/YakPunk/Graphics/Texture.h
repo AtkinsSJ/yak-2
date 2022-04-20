@@ -7,7 +7,8 @@
 #pragma once
 #include <SDL.h>
 
-namespace Graphics {
+namespace YakPunk::Graphics {
+
 class Texture {
     friend class Renderer;
 
@@ -18,4 +19,5 @@ public:
 private:
     SDL_Texture& m_texture;
 };
+
 }

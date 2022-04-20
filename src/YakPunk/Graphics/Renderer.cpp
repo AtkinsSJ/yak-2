@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "Renderer.h"
 #include <SDL_image.h>
+#include <YakPunk/Graphics/Renderer.h>
 
-namespace Graphics {
+namespace YakPunk::Graphics {
 
 Renderer* s_renderer;
 
@@ -85,7 +85,7 @@ void Renderer::draw_texture(Texture const& texture, SDL_Rect bounds)
     SDL_RenderCopy(&m_renderer, &texture.m_texture, nullptr, &bounds);
 }
 
-bool Renderer::load_font(const char* path)
+bool Renderer::load_font(char const* path)
 {
     if (m_font) {
         TTF_CloseFont(m_font);

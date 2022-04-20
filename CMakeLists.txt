@@ -57,10 +57,10 @@ set(SOURCE_FILES
         src/main.cpp
         src/Entity.cpp
         src/MenuScene.cpp
-        src/Graphics/Renderer.cpp
-        src/Graphics/Text.cpp
-        src/Graphics/Texture.cpp
         src/YakPunk/Game.cpp
+        src/YakPunk/Graphics/Renderer.cpp
+        src/YakPunk/Graphics/Text.cpp
+        src/YakPunk/Graphics/Texture.cpp
         src/YakPunk/Scene.cpp
         )
 

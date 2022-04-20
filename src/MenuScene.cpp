@@ -5,8 +5,8 @@
  */
 
 #include <AK/Format.h>
-#include <Graphics/Renderer.h>
 #include <MenuScene.h>
+#include <YakPunk/Graphics/Renderer.h>
 
 MenuScene::MenuScene()
     : Scene()
@@ -26,7 +26,7 @@ void MenuScene::update()
 
 void MenuScene::render()
 {
-    auto& renderer = Graphics::Renderer::the();
+    auto& renderer = YakPunk::Graphics::Renderer::the();
     if (m_title_background)
         renderer.draw_texture(*m_title_background, renderer.window_bounds());
 }

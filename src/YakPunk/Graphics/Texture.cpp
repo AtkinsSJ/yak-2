@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "Texture.h"
+#include <YakPunk/Graphics/Texture.h>
 
-namespace Graphics {
+namespace YakPunk::Graphics {
 
 Texture::Texture(SDL_Texture& texture)
     : m_texture(texture)

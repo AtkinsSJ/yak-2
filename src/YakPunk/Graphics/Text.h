@@ -6,9 +6,11 @@
 
 #pragma once
 
-namespace Graphics {
+namespace YakPunk::Graphics {
+
 class Text {
 
 private:
 };
+
 }

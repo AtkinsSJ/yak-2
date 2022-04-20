@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "Text.h"
+#include <YakPunk/Graphics/Text.h>
 
-namespace Graphics {
+namespace YakPunk::Graphics {
 
 }

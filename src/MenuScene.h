@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include <Graphics/Text.h>
-#include <Graphics/Texture.h>
+#include <YakPunk/Graphics/Text.h>
+#include <YakPunk/Graphics/Texture.h>
 #include <YakPunk/Scene.h>
 
 class MenuScene final : public YakPunk::Scene {
@@ -19,9 +19,9 @@ public:
     virtual void render() override;
 
 private:
-    Graphics::Texture* m_title_background;
+    YakPunk::Graphics::Texture* m_title_background;
 
-    Graphics::Text* m_start_text { nullptr };
-    Graphics::Text* m_high_scores_text { nullptr };
-    Graphics::Text* m_version_text { nullptr };
+    YakPunk::Graphics::Text* m_start_text { nullptr };
+    YakPunk::Graphics::Text* m_high_scores_text { nullptr };
+    YakPunk::Graphics::Text* m_version_text { nullptr };
 };
