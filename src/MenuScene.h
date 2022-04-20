@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2022, Sam Atkins <atkinssj@gmail.com>
  *
@@ -7,14 +6,13 @@
 
 #pragma once
 
-#include "Scene.h"
 #include <Graphics/Text.h>
 #include <Graphics/Texture.h>
-#include <SDL.h>
+#include <YakPunk/Scene.h>
 
-class MenuScene final : public Scene {
+class MenuScene final : public YakPunk::Scene {
 public:
-    explicit MenuScene();
+    MenuScene();
     virtual ~MenuScene();
 
     virtual void update() override;

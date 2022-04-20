@@ -5,3 +5,7 @@
  */
 
 #include "Scene.h"
+
+namespace YakPunk {
+
+}

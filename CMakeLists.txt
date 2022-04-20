@@ -56,13 +56,12 @@ include(cmake/FetchLagom.cmake)
 set(SOURCE_FILES
         src/main.cpp
         src/Entity.cpp
-        src/Game.cpp
         src/MenuScene.cpp
-        src/Scene.cpp
         src/Graphics/Renderer.cpp
         src/Graphics/Text.cpp
         src/Graphics/Texture.cpp
         src/YakPunk/Game.cpp
+        src/YakPunk/Scene.cpp
         )
 
 add_executable(yak ${SOURCE_FILES})

@@ -12,7 +12,7 @@
 
 namespace YakPunk {
 
-ErrorOr<Game> Game::create(String const& window_title, int window_width, int window_height)
+ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window_width, int window_height)
 {
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     bool succeeded = false;
@@ -59,7 +59,7 @@ ErrorOr<Game> Game::create(String const& window_title, int window_width, int win
         return Error::from_string_literal(SDL_GetError());
 
     succeeded = true;
-    return Game { *window, *renderer };
+    return adopt_nonnull_own_or_enomem(new Game(*window, *renderer));
 }
 
 Game::Game(SDL_Window& window, SDL_Renderer& renderer)
@@ -75,6 +75,35 @@ Game::~Game()
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+}
+
+void Game::run()
+{
+    //    auto& renderer = Graphics::Renderer::the();
+
+    bool running = true;
+    while (running) {
+        // Update
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            switch (event.type) {
+            case SDL_QUIT:
+                running = false;
+                break;
+            }
+        }
+
+        if (m_scene)
+            m_scene->update();
+
+        // Render
+        //        renderer.clear();
+
+        //        if (m_scene)
+        //            m_scene->render();
+
+        //        renderer.display_frame();
+    }
 }
 
 }

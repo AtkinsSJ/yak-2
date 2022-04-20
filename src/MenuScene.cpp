@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "MenuScene.h"
+#include <AK/Format.h>
 #include <Graphics/Renderer.h>
-#include <SDL_image.h>
+#include <MenuScene.h>
 
 MenuScene::MenuScene()
     : Scene()
 {
-    m_title_background = Graphics::Renderer::the().load_texture("assets/title.png");
+    //    m_title_background = Graphics::Renderer::the().load_texture("assets/title.png");
 }
 
 MenuScene::~MenuScene()
@@ -21,6 +21,7 @@ MenuScene::~MenuScene()
 
 void MenuScene::update()
 {
+    dbgln("Running menu scene update!");
 }
 
 void MenuScene::render()

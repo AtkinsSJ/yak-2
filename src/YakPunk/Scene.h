@@ -6,7 +6,8 @@
 
 #pragma once
 
-#include <SDL_render.h>
+namespace YakPunk {
+
 class Scene {
 public:
     Scene() = default;
@@ -17,3 +18,5 @@ public:
 
 private:
 };
+
+}
