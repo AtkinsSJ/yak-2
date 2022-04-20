@@ -11,6 +11,7 @@
 #include <AK/String.h>
 #include <AK/Types.h>
 #include <LibGfx/Size.h>
+#include <YakPunk/Assets.h>
 #include <YakPunk/Scene.h>
 
 struct SDL_Renderer;
@@ -37,10 +38,11 @@ public:
     Gfx::IntSize window_size() const;
 
 private:
-    Game(SDL_Window&, SDL_Renderer&);
+    Game(SDL_Window&, SDL_Renderer&, NonnullOwnPtr<Assets>);
 
     SDL_Window& m_window;
     SDL_Renderer& m_renderer;
+    NonnullOwnPtr<Assets> m_assets;
 
     OwnPtr<Scene> m_scene {};
 };

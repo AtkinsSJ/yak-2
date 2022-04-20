@@ -22,6 +22,8 @@ Game& Game::the()
 
 ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window_width, int window_height)
 {
+    VERIFY(!g_game);
+
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     bool succeeded = false;
     u32 sdl_init_flags = SDL_INIT_VIDEO;
@@ -66,15 +68,18 @@ ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window
     if (!renderer)
         return Error::from_string_literal(SDL_GetError());
 
+    auto assets = TRY(Assets::create());
+
     succeeded = true;
-    auto game_ptr = TRY(adopt_nonnull_own_or_enomem(new Game(*window, *renderer)));
+    auto game_ptr = TRY(adopt_nonnull_own_or_enomem(new Game(*window, *renderer, move(assets))));
     g_game = game_ptr;
     return move(game_ptr);
 }
 
-Game::Game(SDL_Window& window, SDL_Renderer& renderer)
+Game::Game(SDL_Window& window, SDL_Renderer& renderer, NonnullOwnPtr<Assets> assets)
     : m_window(window)
     , m_renderer(renderer)
+    , m_assets(move(assets))
 {
 }
 
@@ -89,8 +94,6 @@ Game::~Game()
 
 void Game::run()
 {
-    //    auto& renderer = Graphics::Renderer::the();
-
     bool running = true;
     while (running) {
         // Update
