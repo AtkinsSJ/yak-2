@@ -20,9 +20,6 @@ public:
     static bool init(SDL_Window* window);
     static void free();
 
-    void clear();
-    void display_frame();
-
     SDL_Rect const& window_bounds() const { return m_window_bounds; }
 
     Texture* load_texture(char const* path);

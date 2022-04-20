@@ -51,17 +51,6 @@ void Renderer::free()
     s_renderer = nullptr;
 }
 
-void Renderer::clear()
-{
-    SDL_SetRenderDrawColor(&m_renderer, 0, 0, 0, 255);
-    SDL_RenderClear(&m_renderer);
-}
-
-void Renderer::display_frame()
-{
-    SDL_RenderPresent(&m_renderer);
-}
-
 Texture* Renderer::load_texture(char const* path)
 {
     auto* surface = IMG_Load(path);
