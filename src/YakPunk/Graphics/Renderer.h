@@ -22,9 +22,6 @@ public:
 
     SDL_Rect const& window_bounds() const { return m_window_bounds; }
 
-    Texture* load_texture(char const* path);
-    void draw_texture(Texture const& texture, SDL_Rect bounds);
-
     bool load_font(char const* path);
 
 private:

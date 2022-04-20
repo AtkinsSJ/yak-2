@@ -8,15 +8,16 @@
 #include <MenuScene.h>
 #include <YakPunk/Graphics/Renderer.h>
 
-MenuScene::MenuScene()
-    : Scene()
+ErrorOr<NonnullOwnPtr<MenuScene>> MenuScene::create()
 {
-    //    m_title_background = Graphics::Renderer::the().load_texture("assets/title.png");
+    auto title_background = TRY(YakPunk::Graphics::Texture::load("assets/title.png"));
+    return adopt_nonnull_own_or_enomem(new MenuScene(move(title_background)));
 }
 
-MenuScene::~MenuScene()
+MenuScene::MenuScene(NonnullRefPtr<YakPunk::Graphics::Texture> title_background)
+    : Scene()
+    , m_title_background(move(title_background))
 {
-    delete m_title_background;
 }
 
 void MenuScene::update()
@@ -26,7 +27,5 @@ void MenuScene::update()
 
 void MenuScene::render()
 {
-    auto& renderer = YakPunk::Graphics::Renderer::the();
-    if (m_title_background)
-        renderer.draw_texture(*m_title_background, renderer.window_bounds());
+    m_title_background->draw_at({ 0, 0, 100, 100 });
 }

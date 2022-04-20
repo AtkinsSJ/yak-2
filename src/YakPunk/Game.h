@@ -20,17 +20,19 @@ namespace YakPunk {
 class Game {
 public:
     static ErrorOr<NonnullOwnPtr<Game>> create(String const& window_title, int window_width, int window_height);
+    static Game& the();
     ~Game();
 
     template<typename T>
     ErrorOr<void> set_scene()
     {
-        auto scene = new T;
-        m_scene = TRY(adopt_nonnull_own_or_enomem(scene));
+        m_scene = TRY(T::create());
         return {};
     }
 
     void run();
+
+    SDL_Renderer& sdl_renderer() { return m_renderer; }
 
 private:
     Game(SDL_Window&, SDL_Renderer&);

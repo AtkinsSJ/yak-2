@@ -51,29 +51,6 @@ void Renderer::free()
     s_renderer = nullptr;
 }
 
-Texture* Renderer::load_texture(char const* path)
-{
-    auto* surface = IMG_Load(path);
-    if (!surface) {
-        SDL_LogError(SDL_LOG_CATEGORY_SYSTEM, "Failed to load image `%s`: %s", path, SDL_GetError());
-        return nullptr;
-    }
-
-    auto* sdl_texture = SDL_CreateTextureFromSurface(&m_renderer, surface);
-    SDL_FreeSurface(surface);
-    if (!sdl_texture) {
-        SDL_LogError(SDL_LOG_CATEGORY_SYSTEM, "Failed to create texture from image `%s`: %s", path, SDL_GetError());
-        return nullptr;
-    }
-
-    return new Texture(*sdl_texture);
-}
-
-void Renderer::draw_texture(Texture const& texture, SDL_Rect bounds)
-{
-    SDL_RenderCopy(&m_renderer, &texture.m_texture, nullptr, &bounds);
-}
-
 bool Renderer::load_font(char const* path)
 {
     if (m_font) {
