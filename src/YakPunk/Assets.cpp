@@ -48,6 +48,8 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
         warnln("Failed to load image `{}`: {}", path, IMG_GetError());
         return Error::from_string_literal(IMG_GetError());
     }
+    int width = surface->w;
+    int height = surface->h;
 
     auto& renderer = Game::the().sdl_renderer();
     auto* sdl_texture = SDL_CreateTextureFromSurface(&renderer, surface);
@@ -57,7 +59,7 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
         return Error::from_string_literal(SDL_GetError());
     }
 
-    auto texture = adopt_ref(*new Graphics::Texture({}, *sdl_texture));
+    auto texture = adopt_ref(*new Graphics::Texture({}, *sdl_texture, width, height));
     m_textures.set(path, texture);
     return texture;
 }

@@ -18,13 +18,18 @@ namespace YakPunk::Graphics {
 // FIXME: This doesn't need to be refcounted if we make the Assets class smarter.
 class Texture final : public RefCounted<Texture> {
 public:
-    Texture(Badge<Assets>, SDL_Texture&);
+    Texture(Badge<Assets>, SDL_Texture&, int width, int height);
     ~Texture();
 
+    int width() const { return m_size.width(); }
+    int height() const { return m_size.height(); }
+
+    void draw_at(Gfx::IntPoint position) const;
     void draw_at(Gfx::IntRect bounds) const;
 
 private:
     SDL_Texture& m_texture;
+    Gfx::IntSize m_size;
 };
 
 }

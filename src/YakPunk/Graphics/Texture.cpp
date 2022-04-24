@@ -10,14 +10,22 @@
 
 namespace YakPunk::Graphics {
 
-Texture::Texture(Badge<YakPunk::Assets>, SDL_Texture& texture)
+Texture::Texture(Badge<YakPunk::Assets>, SDL_Texture& texture, int width, int height)
     : m_texture(texture)
+    , m_size(width, height)
 {
 }
 
 Texture::~Texture()
 {
     SDL_DestroyTexture(&m_texture);
+}
+
+void Texture::draw_at(Gfx::IntPoint position) const
+{
+    auto& renderer = Game::the().sdl_renderer();
+    SDL_Rect rect { position.x(), position.y(), width(), height() };
+    SDL_RenderCopy(&renderer, &m_texture, nullptr, &rect);
 }
 
 void Texture::draw_at(Gfx::IntRect bounds) const
