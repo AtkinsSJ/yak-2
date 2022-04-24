@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#include <YakPunk/Graphics/Text.h>
+#include "Text.h"
 
 namespace YakPunk::Graphics {
 

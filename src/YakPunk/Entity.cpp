@@ -5,7 +5,6 @@
  */
 
 #include "Entity.h"
-#include <YakPunk/Graphics/Graphic.h>
 
 namespace YakPunk {
 

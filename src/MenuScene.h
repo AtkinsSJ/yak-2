@@ -21,7 +21,7 @@ public:
     virtual void render() override;
 
 private:
-    MenuScene(NonnullRefPtr<YakPunk::Graphics::Texture> title_background);
+    explicit MenuScene(NonnullRefPtr<YakPunk::Graphics::Texture> title_background);
     NonnullRefPtr<YakPunk::Graphics::Texture> m_title_background;
 
     YakPunk::Graphics::Text* m_start_text { nullptr };

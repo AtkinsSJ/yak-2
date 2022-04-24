@@ -9,6 +9,7 @@
 #include <AK/OwnPtr.h>
 #include <LibGfx/Point.h>
 #include <YakPunk/Forward.h>
+#include <YakPunk/Graphics/Graphic.h>
 
 namespace YakPunk {
 
