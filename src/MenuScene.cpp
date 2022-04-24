@@ -5,6 +5,7 @@
  */
 
 #include "MenuScene.h"
+#include <YakPunk/Entity.h>
 #include <YakPunk/Game.h>
 
 ErrorOr<NonnullOwnPtr<MenuScene>> MenuScene::create()
@@ -17,14 +18,18 @@ MenuScene::MenuScene(NonnullRefPtr<YakPunk::Graphics::Texture> title_background)
     : Scene()
     , m_title_background(move(title_background))
 {
+    add(new YakPunk::Entity());
 }
 
 void MenuScene::update()
 {
+    Scene::update();
 }
 
 void MenuScene::render()
 {
+    Scene::render();
+
     auto window_size = YakPunk::Game::the().window_size();
     m_title_background->draw_at({ 0, 0, window_size.width(), window_size.height() });
 }

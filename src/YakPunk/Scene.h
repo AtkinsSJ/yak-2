@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include <AK/NonnullOwnPtrVector.h>
+#include <YakPunk/Forward.h>
+
 namespace YakPunk {
 
 class Scene {
@@ -13,10 +16,13 @@ public:
     Scene() = default;
     virtual ~Scene() = default;
 
-    virtual void update() = 0;
-    virtual void render() = 0;
+    virtual void update();
+    virtual void render();
+
+    Entity& add(Entity*);
 
 private:
+    NonnullOwnPtrVector<Entity> m_entities;
 };
 
 }

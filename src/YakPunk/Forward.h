@@ -8,6 +8,7 @@
 
 namespace YakPunk {
 class Assets;
+class Entity;
 class Game;
 class Scene;
 }
