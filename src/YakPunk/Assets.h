@@ -12,6 +12,7 @@
 #include <AK/RefPtr.h>
 #include <AK/String.h>
 #include <YakPunk/Forward.h>
+#include <YakPunk/Graphics/Font.h>
 #include <YakPunk/Graphics/Texture.h>
 
 namespace YakPunk {
@@ -24,11 +25,13 @@ public:
 
     // FIXME: I'd rather return ErrorOr<Texture&>, but ErrorOr can't hold a reference.
     ErrorOr<NonnullRefPtr<Graphics::Texture>> load_texture(String const& path);
+    ErrorOr<NonnullRefPtr<Graphics::Font>> load_font(String const& path);
 
 private:
     Assets();
 
     HashMap<String, NonnullRefPtr<Graphics::Texture>> m_textures;
+    HashMap<String, NonnullRefPtr<Graphics::Font>> m_fonts;
 };
 
 }

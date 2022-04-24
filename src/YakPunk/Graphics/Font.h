@@ -8,23 +8,19 @@
 
 #include <AK/Badge.h>
 #include <AK/RefCounted.h>
-#include <AK/String.h>
-#include <LibGfx/Rect.h>
-#include <SDL.h>
+#include <SDL_ttf.h>
 #include <YakPunk/Forward.h>
 
 namespace YakPunk::Graphics {
 
 // FIXME: This doesn't need to be refcounted if we make the Assets class smarter.
-class Texture final : public RefCounted<Texture> {
+class Font final : public RefCounted<Font> {
 public:
-    Texture(Badge<Assets>, SDL_Texture&);
-    ~Texture();
-
-    void draw_at(Gfx::IntRect bounds) const;
+    Font(Badge<Assets>, TTF_Font&);
+    ~Font();
 
 private:
-    SDL_Texture& m_texture;
+    TTF_Font& m_font;
 };
 
 }

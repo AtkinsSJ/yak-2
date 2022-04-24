@@ -6,6 +6,7 @@
 
 #include "Assets.h"
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <YakPunk/Game.h>
 
 namespace YakPunk {
@@ -59,6 +60,23 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
     auto texture = adopt_ref(*new Graphics::Texture({}, *sdl_texture));
     m_textures.set(path, texture);
     return texture;
+}
+
+ErrorOr<NonnullRefPtr<Graphics::Font>> Assets::load_font(String const& path)
+{
+    auto existing_font = m_fonts.find(path);
+    if (existing_font != m_fonts.end())
+        return existing_font->value;
+
+    auto* sdl_font = TTF_OpenFont(path.characters(), 16);
+    if (!sdl_font) {
+        warnln("Failed to load font file `{}`: {}", path, TTF_GetError());
+        return Error::from_string_literal(TTF_GetError());
+    }
+
+    auto font = adopt_ref(*new Graphics::Font({}, *sdl_font));
+    m_fonts.set(path, font);
+    return font;
 }
 
 }

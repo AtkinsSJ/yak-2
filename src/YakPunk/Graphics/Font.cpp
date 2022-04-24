@@ -4,16 +4,18 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#pragma once
-
-namespace YakPunk {
-class Assets;
-class Game;
-class Scene;
-}
+#include "Font.h"
 
 namespace YakPunk::Graphics {
-class Font;
-class Text;
-class Texture;
+
+Font::Font(Badge<Assets>, TTF_Font& font)
+    : m_font(font)
+{
+}
+
+Font::~Font()
+{
+    TTF_CloseFont(&m_font);
+}
+
 }
