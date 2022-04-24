@@ -15,6 +15,8 @@ class Scene;
 
 namespace YakPunk::Graphics {
 class Font;
+class Graphic;
+class Sprite;
 class Text;
 class Texture;
 }

@@ -5,12 +5,20 @@
  */
 
 #include "Entity.h"
+#include <YakPunk/Graphics/Graphic.h>
 
 namespace YakPunk {
 
+void Entity::update()
+{
+    if (m_graphic)
+        m_graphic->update();
+}
+
 void Entity::render() const
 {
-    // TODO: Draw our graphic!
+    if (m_graphic)
+        m_graphic->render(m_position);
 }
 
 }
