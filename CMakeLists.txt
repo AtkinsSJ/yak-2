@@ -60,7 +60,6 @@ set(SOURCE_FILES
         src/YakPunk/Assets.cpp
         src/YakPunk/Game.cpp
         src/YakPunk/Graphics/Font.cpp
-        src/YakPunk/Graphics/Renderer.cpp
         src/YakPunk/Graphics/Text.cpp
         src/YakPunk/Graphics/Texture.cpp
         src/YakPunk/Scene.cpp
