@@ -24,8 +24,8 @@ public:
     int width() const { return m_size.width(); }
     int height() const { return m_size.height(); }
 
-    void draw_at(Gfx::IntPoint position) const;
-    void draw_at(Gfx::IntRect bounds) const;
+    void draw_at(Gfx::FloatPoint position) const;
+    void draw_at(Gfx::FloatRect bounds) const;
 
 private:
     SDL_Texture& m_texture;

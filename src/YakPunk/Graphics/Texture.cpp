@@ -21,18 +21,22 @@ Texture::~Texture()
     SDL_DestroyTexture(&m_texture);
 }
 
-void Texture::draw_at(Gfx::IntPoint position) const
+void Texture::draw_at(Gfx::FloatPoint position) const
 {
-    auto& renderer = Game::the().sdl_renderer();
-    SDL_Rect rect { position.x(), position.y(), width(), height() };
-    SDL_RenderCopy(&renderer, &m_texture, nullptr, &rect);
+    auto& game = Game::the();
+    auto& renderer = game.sdl_renderer();
+    auto scale = game.scale();
+    SDL_FRect rect { position.x() * scale, position.y() * scale, (float)width() * scale, (float)height() * scale };
+    SDL_RenderCopyF(&renderer, &m_texture, nullptr, &rect);
 }
 
-void Texture::draw_at(Gfx::IntRect bounds) const
+void Texture::draw_at(Gfx::FloatRect bounds) const
 {
-    auto& renderer = Game::the().sdl_renderer();
-    SDL_Rect rect { bounds.x(), bounds.y(), bounds.width(), bounds.height() };
-    SDL_RenderCopy(&renderer, &m_texture, nullptr, &rect);
+    auto& game = Game::the();
+    auto& renderer = game.sdl_renderer();
+    auto scale = game.scale();
+    SDL_FRect rect { bounds.x() * scale, bounds.y() * scale, bounds.width() * scale, bounds.height() * scale };
+    SDL_RenderCopyF(&renderer, &m_texture, nullptr, &rect);
 }
 
 }

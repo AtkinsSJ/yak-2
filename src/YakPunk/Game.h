@@ -25,6 +25,9 @@ public:
     static Game& the();
     ~Game();
 
+    float scale() const { return m_scale; }
+    void set_scale(float scale) { m_scale = scale; }
+
     template<typename T>
     ErrorOr<void> set_scene()
     {
@@ -45,6 +48,7 @@ private:
     NonnullOwnPtr<Assets> m_assets;
 
     OwnPtr<Scene> m_scene {};
+    float m_scale { 1 };
 };
 
 }

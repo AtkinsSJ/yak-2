@@ -10,7 +10,7 @@ namespace YakPunk::Graphics {
 
 void Sprite::render(Gfx::FloatPoint position) const
 {
-    m_texture->draw_at(position.to_rounded<int>());
+    m_texture->draw_at(position);
 }
 
 }
