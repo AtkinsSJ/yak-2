@@ -56,7 +56,9 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
         return Error::from_string_literal(SDL_GetError());
     }
 
-    return adopt_ref(*new Graphics::Texture({}, *sdl_texture));
+    auto texture = adopt_ref(*new Graphics::Texture({}, *sdl_texture));
+    m_textures.set(path, texture);
+    return texture;
 }
 
 }
