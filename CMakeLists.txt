@@ -55,7 +55,6 @@ include(cmake/FetchLagom.cmake)
 
 set(SOURCE_FILES
         src/main.cpp
-        src/Entity.cpp
         src/MenuScene.cpp
         src/YakPunk/Assets.cpp
         src/YakPunk/Entity.cpp
