@@ -18,7 +18,7 @@ ErrorOr<NonnullOwnPtr<Assets>> Assets::create()
     VERIFY(!g_assets);
     auto assets = TRY(adopt_nonnull_own_or_enomem(new Assets));
     g_assets = assets;
-    return move(assets);
+    return assets;
 }
 
 Assets::Assets()

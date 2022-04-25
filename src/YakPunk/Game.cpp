@@ -73,7 +73,7 @@ ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window
     succeeded = true;
     auto game_ptr = TRY(adopt_nonnull_own_or_enomem(new Game(*window, *renderer, move(assets))));
     g_game = game_ptr;
-    return move(game_ptr);
+    return game_ptr;
 }
 
 Game::Game(SDL_Window& window, SDL_Renderer& renderer, NonnullOwnPtr<Assets> assets)

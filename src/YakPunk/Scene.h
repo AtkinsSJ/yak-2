@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/NonnullOwnPtrVector.h>
+#include <YakPunk/Entity.h>
 #include <YakPunk/Forward.h>
 
 namespace YakPunk {
