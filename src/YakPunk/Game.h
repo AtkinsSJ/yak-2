@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Sam Atkins <atkinssj@gmail.com>
+ * Copyright (c) 2022-2023, Sam Atkins <atkinssj@gmail.com>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
@@ -21,7 +21,7 @@ namespace YakPunk {
 
 class Game {
 public:
-    static ErrorOr<NonnullOwnPtr<Game>> create(String const& window_title, int window_width, int window_height);
+    static ErrorOr<NonnullOwnPtr<Game>> create(StringView window_title, int window_width, int window_height);
     static Game& the();
     ~Game();
 

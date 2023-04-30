@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Sam Atkins <atkinssj@gmail.com>
+ * Copyright (c) 2022-2023, Sam Atkins <atkinssj@gmail.com>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
@@ -11,7 +11,7 @@
 
 ErrorOr<NonnullOwnPtr<MenuScene>> MenuScene::create()
 {
-    auto title_background = TRY(YakPunk::Assets::the().load_texture("assets/title.png"));
+    auto title_background = TRY(YakPunk::Assets::the().load_texture(TRY("assets/title.png"_string)));
     return adopt_nonnull_own_or_enomem(new MenuScene(move(title_background)));
 }
 

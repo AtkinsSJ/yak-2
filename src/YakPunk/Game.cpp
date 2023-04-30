@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Sam Atkins <atkinssj@gmail.com>
+ * Copyright (c) 2022-2023, Sam Atkins <atkinssj@gmail.com>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
@@ -20,7 +20,7 @@ Game& Game::the()
     return *g_game;
 }
 
-ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window_width, int window_height)
+ErrorOr<NonnullOwnPtr<Game>> Game::create(StringView window_title, int window_width, int window_height)
 {
     VERIFY(!g_game);
 
@@ -47,22 +47,22 @@ ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window
     } };
 
     if (SDL_Init(sdl_init_flags) < 0)
-        return Error::from_string_literal(SDL_GetError());
+        return Error::from_string_view({ SDL_GetError(), strlen(SDL_GetError()) });
 
     if (!(IMG_Init(img_init_flags) & img_init_flags))
-        return Error::from_string_literal(IMG_GetError());
+        return Error::from_string_view({ IMG_GetError(), strlen(IMG_GetError()) });
 
     if (TTF_Init() < 0)
-        return Error::from_string_literal(TTF_GetError());
+        return Error::from_string_view({ TTF_GetError(), strlen(TTF_GetError()) });
 
     u32 window_flags = SDL_WINDOW_SHOWN;
-    window = SDL_CreateWindow(window_title.characters(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, window_flags);
+    window = SDL_CreateWindow(window_title.to_deprecated_string().characters(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, window_flags);
     if (!window)
-        return Error::from_string_literal(SDL_GetError());
+        return Error::from_string_view({ SDL_GetError(), strlen(SDL_GetError()) });
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
     if (!renderer)
-        return Error::from_string_literal(SDL_GetError());
+        return Error::from_string_view({ SDL_GetError(), strlen(SDL_GetError()) });
 
     auto assets = TRY(Assets::create());
 

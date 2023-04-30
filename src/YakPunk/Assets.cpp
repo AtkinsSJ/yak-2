@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Sam Atkins <atkinssj@gmail.com>
+ * Copyright (c) 2022-2023, Sam Atkins <atkinssj@gmail.com>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
@@ -43,10 +43,10 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
     if (existing_texture != m_textures.end())
         return existing_texture->value;
 
-    auto* surface = IMG_Load(path.characters());
+    auto* surface = IMG_Load(path.to_deprecated_string().characters());
     if (!surface) {
         warnln("Failed to load image `{}`: {}", path, IMG_GetError());
-        return Error::from_string_literal(IMG_GetError());
+        return Error::from_string_view({ IMG_GetError(), strlen(IMG_GetError()) });
     }
     int width = surface->w;
     int height = surface->h;
@@ -56,7 +56,7 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
     SDL_FreeSurface(surface);
     if (!sdl_texture) {
         warnln("Failed to create texture from image `{}`: {}", path, SDL_GetError());
-        return Error::from_string_literal(SDL_GetError());
+        return Error::from_string_view({ SDL_GetError(), strlen(SDL_GetError()) });
     }
 
     auto texture = adopt_ref(*new Graphics::Texture({}, *sdl_texture, width, height));
@@ -70,10 +70,10 @@ ErrorOr<NonnullRefPtr<Graphics::Font>> Assets::load_font(String const& path)
     if (existing_font != m_fonts.end())
         return existing_font->value;
 
-    auto* sdl_font = TTF_OpenFont(path.characters(), 16);
+    auto* sdl_font = TTF_OpenFont(path.to_deprecated_string().characters(), 16);
     if (!sdl_font) {
         warnln("Failed to load font file `{}`: {}", path, TTF_GetError());
-        return Error::from_string_literal(TTF_GetError());
+        return Error::from_string_view({ TTF_GetError(), strlen(TTF_GetError()) });
     }
 
     auto font = adopt_ref(*new Graphics::Font({}, *sdl_font));
