@@ -21,10 +21,9 @@ void Scene::render()
         entity->render();
 }
 
-Entity& Scene::add(Entity* entity)
+ErrorOr<void> Scene::add(NonnullOwnPtr<Entity> entity)
 {
-    m_entities.append(adopt_own(*entity));
-    return *entity;
+    return m_entities.try_append(move(entity));
 }
 
 }

@@ -67,7 +67,7 @@ ErrorOr<NonnullOwnPtr<Game>> Game::create(StringView window_title, int window_wi
     auto assets = TRY(Assets::create());
 
     guard.disarm();
-    auto game_ptr = TRY(adopt_nonnull_own_or_enomem(new Game(*window, *renderer, move(assets))));
+    auto game_ptr = TRY(adopt_nonnull_own_or_enomem(new (nothrow) Game(*window, *renderer, move(assets))));
     g_game = game_ptr;
     return game_ptr;
 }

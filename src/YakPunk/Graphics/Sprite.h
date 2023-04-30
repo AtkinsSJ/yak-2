@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <AK/NonnullOwnPtr.h>
 #include <LibGfx/Rect.h>
 #include <YakPunk/Graphics/Graphic.h>
 #include <YakPunk/Graphics/Texture.h>
@@ -14,15 +15,16 @@ namespace YakPunk::Graphics {
 
 class Sprite final : public Graphic {
 public:
-    explicit Sprite(NonnullRefPtr<Texture> texture)
-        : Graphic()
-        , m_texture(move(texture)) {};
-
+    static ErrorOr<NonnullOwnPtr<Sprite>> create(NonnullRefPtr<Texture>);
     virtual ~Sprite() = default;
 
     virtual void render(Gfx::FloatPoint position) const override;
 
 private:
+    explicit Sprite(NonnullRefPtr<Texture> texture)
+        : Graphic()
+        , m_texture(move(texture)) {};
+
     NonnullRefPtr<Texture> m_texture;
 };
 

@@ -11,15 +11,19 @@
 
 ErrorOr<NonnullOwnPtr<MenuScene>> MenuScene::create()
 {
+    auto menu_scene = TRY(adopt_nonnull_own_or_enomem(new (nothrow) MenuScene));
+
     auto title_background = TRY(YakPunk::Assets::the().load_texture(TRY("assets/title.png"_string)));
-    return adopt_nonnull_own_or_enomem(new MenuScene(move(title_background)));
+    auto sprite = TRY(YakPunk::Graphics::Sprite::create(move(title_background)));
+    auto entity = TRY(YakPunk::Entity::create(0, 0, move(sprite)));
+    TRY(menu_scene->add(move(entity)));
+
+    return menu_scene;
 }
 
-MenuScene::MenuScene(NonnullRefPtr<YakPunk::Graphics::Texture> title_background)
+MenuScene::MenuScene()
     : Scene()
-    , m_title_background(move(title_background))
 {
-    add(new YakPunk::Entity(0, 0, new YakPunk::Graphics::Sprite(m_title_background)));
 }
 
 void MenuScene::update()

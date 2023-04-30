@@ -16,7 +16,7 @@ Assets* g_assets = nullptr;
 ErrorOr<NonnullOwnPtr<Assets>> Assets::create()
 {
     VERIFY(!g_assets);
-    auto assets = TRY(adopt_nonnull_own_or_enomem(new Assets));
+    auto assets = TRY(adopt_nonnull_own_or_enomem(new (nothrow) Assets));
     g_assets = assets;
     return assets;
 }
@@ -59,7 +59,7 @@ ErrorOr<NonnullRefPtr<Graphics::Texture>> Assets::load_texture(String const& pat
         return Error::from_string_view({ SDL_GetError(), strlen(SDL_GetError()) });
     }
 
-    auto texture = adopt_ref(*new Graphics::Texture({}, *sdl_texture, width, height));
+    auto texture = TRY(adopt_nonnull_ref_or_enomem(new (nothrow) Graphics::Texture({}, *sdl_texture, width, height)));
     m_textures.set(path, texture);
     return texture;
 }
@@ -76,7 +76,7 @@ ErrorOr<NonnullRefPtr<Graphics::Font>> Assets::load_font(String const& path)
         return Error::from_string_view({ TTF_GetError(), strlen(TTF_GetError()) });
     }
 
-    auto font = adopt_ref(*new Graphics::Font({}, *sdl_font));
+    auto font = TRY(adopt_nonnull_ref_or_enomem(new (nothrow) Graphics::Font({}, *sdl_font)));
     m_fonts.set(path, font);
     return font;
 }

@@ -21,7 +21,7 @@ public:
     virtual void update();
     virtual void render();
 
-    Entity& add(Entity*);
+    ErrorOr<void> add(NonnullOwnPtr<Entity>);
 
 private:
     Vector<NonnullOwnPtr<Entity>> m_entities;
