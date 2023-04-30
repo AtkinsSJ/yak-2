@@ -25,16 +25,12 @@ ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window
     VERIFY(!g_game);
 
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
-    bool succeeded = false;
     u32 sdl_init_flags = SDL_INIT_VIDEO;
     u8 img_init_flags = IMG_INIT_PNG;
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    ScopeGuard guard { [&]() {
-        if (succeeded)
-            return;
-
+    ArmedScopeGuard guard { [&]() {
         if (renderer)
             SDL_DestroyRenderer(renderer);
 
@@ -70,7 +66,7 @@ ErrorOr<NonnullOwnPtr<Game>> Game::create(String const& window_title, int window
 
     auto assets = TRY(Assets::create());
 
-    succeeded = true;
+    guard.disarm();
     auto game_ptr = TRY(adopt_nonnull_own_or_enomem(new Game(*window, *renderer, move(assets))));
     g_game = game_ptr;
     return game_ptr;
